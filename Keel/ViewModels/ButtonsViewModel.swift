@@ -1,11 +1,19 @@
 //
 //  ButtonsViewModel.swift
-//  history-project
+//  Keel
 //
 //  Created by Diego Arroyo on 17/12/24.
 //
 
 import Foundation
+import SwiftUI
+
+struct NoHighlightButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 1.0 : 1.0)
+    }
+}
 
 class ButtonsGridViewModel: ObservableObject {
     @Published var homepageItems: [[ButtonItem]] = [

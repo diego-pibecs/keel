@@ -1,6 +1,6 @@
 //
 //  FigureView.swift
-//  history-project
+//  Keel
 //
 //  Created by Diego Arroyo on 17/12/24.
 //
@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FigureView: View {
     @StateObject private var artCardModel = ArtCardViewModel()
+    @Environment(\.dismiss) var dismiss
 
     let columns = [
         GridItem(.flexible(), spacing: 10),
@@ -28,25 +29,29 @@ struct FigureView: View {
                 ],
                 colors: [
                     .brown,
-                    .mainDarkGray,
-                    .mainDarkGray,
-                    .mainDarkGray,
+                    .default,
+                    .default,
+                    .default,
                 ],
                 smoothsColors: true,
                 colorSpace: .perceptual
             )
             .ignoresSafeArea(.all)
             ScrollView(.vertical) {
+                Spacer()
+                    .navigationBarBackButtonHidden(true)
                 HStack(spacing: 260) {
-                    Button(action: {}) {
+                    Button(action: {
+                        dismiss()
+                    }) {
                         Text(Image(systemName: "arrow.left"))
                             .font(.system(size: 24))
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.mainDarkGray)
                     }
                     Button(action: {}) {
                         Text(Image(systemName: "square.and.arrow.up"))
                             .font(.system(size: 24))
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.mainDarkGray)
                     }
                 }
                 VStack {
@@ -58,10 +63,11 @@ struct FigureView: View {
                             .padding(
                                 .horizontal, UIScreen.main.bounds.width * 0.12)
                         Text("Ferdinand Georg Waldmüller")
-                            .position(x: 180, y: 25)
+                            .position(x: 180, y: 30)
                         Text("1793 - 1865")
-                            .position(x: 270, y: 380)
+                            .position(x: 270, y: 370)
                     }
+                    .foregroundStyle(.white)
                     .padding(.vertical, 20)
                     .font(.custom("Gloock", size: 36))
                     HStack {
@@ -74,12 +80,12 @@ struct FigureView: View {
                     .padding(.horizontal, UIScreen.main.bounds.width * 0.08)
                     .padding(.vertical, 7)
                     VStack(spacing: 20) {
-                        //                        Text(
-                        //                            "Ferdinand Georg Waldmüller was born in Vienna, Austria. At the age of 14, he enrolled in the Academy of Fine Arts in Vienna, where he began formal training in painting and the fine arts. Despite early struggles and financial difficulties, his natural talent for realism quickly set him apart."
-                        //                        )
-                        //                        Text(
-                        //                            "Initially, Waldmüller earned a living painting portraits of aristocrats and upper-class patrons, developing his skills in meticulous detail and precision. This attention to detail would later become a hallmark of his work."
-                        //                        )
+                        Text(
+                            "Ferdinand Georg Waldmüller was born in Vienna, Austria. At the age of 14, he enrolled in the Academy of Fine Arts in Vienna, where he began formal training in painting and the fine arts. Despite early struggles and financial difficulties, his natural talent for realism quickly set him apart."
+                        )
+                        Text(
+                            "Initially, Waldmüller earned a living painting portraits of aristocrats and upper-class patrons, developing his skills in meticulous detail and precision. This attention to detail would later become a hallmark of his work."
+                        )
                         VStack(alignment: .leading) {
                             Text("Career Development")
                                 .bold()
@@ -147,20 +153,21 @@ struct FigureView: View {
                         Spacer()
                     }
                     .padding(.top, 40)
-                    LazyVGrid(columns: columns, spacing: 10) {  // Grid con 2 columnas
-                        ForEach(artCardModel.artistArtItems, id: \.title) { imageName in
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        ForEach(artCardModel.artistArtItems, id: \.title) {
+                            imageName in
                             Image(imageName.image)
                                 .resizable()
-                                .aspectRatio(contentMode: .fill)  // Ajusta el contenido
-                                .frame(height: 150)  // Altura fija para cada imagen
-                                .clipped()  // Recorta el contenido si se desborda
-                                .cornerRadius(12)  // Bordes redondeados
-                                .shadow(radius: 5)  // Sombra opcional
+                                .aspectRatio(contentMode: .fill)
+                                .frame(height: 150)
+                                .clipped()
+                                .cornerRadius(12)
+                                .shadow(radius: 5)
                         }
                     }
-                    .padding(.horizontal, 10)  // Padding en los lados
+                    .padding(.horizontal, 10)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(.mainDarkGray)
             }
         }
     }

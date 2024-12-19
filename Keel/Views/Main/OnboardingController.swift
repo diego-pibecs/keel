@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  history-project
+//  Keel
 //
 //  Created by Diego Arroyo on 13/12/24.
 //
@@ -15,7 +15,7 @@ struct OnboardingController: View {
         NavigationStack {
             VStack {
                 if currentOnboardingView == 6 || hasSeenOnboarding {
-                    Homepage(currentOnboardingView: $currentOnboardingView)
+                    MainTabView()
                         .transition(.move(edge: .trailing))
                 } //else if currentOnboardingView == 1 {
 //                    Onboarding(currentOnboardingView: $currentOnboardingView)

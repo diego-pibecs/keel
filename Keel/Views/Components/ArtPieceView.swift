@@ -1,6 +1,6 @@
 //
 //  ArtPieceView.swift
-//  history-project
+//  Keel
 //
 //  Created by Diego Arroyo on 17/12/24.
 //
@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ArtPieceView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ZStack {
             MeshGradient(
@@ -25,31 +27,35 @@ struct ArtPieceView: View {
                     [1.0, 1.0],
                 ],
                 colors: [
-                    .mainDarkGray,
-                    .mainDarkGray,
-                    .mainDarkGray,
-                    .mainDarkGray,
+                    .default,
+                    .default,
+                    .default,
+                    .default,
                     .green,
-                    .mainDarkGray,
-                    .mainDarkGray,
-                    .mainDarkGray,
-                    .mainDarkGray,
+                    .default,
+                    .default,
+                    .default,
+                    .default,
                 ],
                 smoothsColors: true,
                 colorSpace: .perceptual
             )
             .ignoresSafeArea(.all)
             ScrollView(.vertical) {
+                Spacer()
+                    .navigationBarBackButtonHidden(true)
                 HStack(spacing: 260) {
-                    Button(action: {}) {
+                    Button(action: {
+                        dismiss()
+                    }) {
                         Text(Image(systemName: "arrow.left"))
                             .font(.system(size: 24))
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.mainDarkGray)
                     }
                     Button(action: {}) {
                         Text(Image(systemName: "square.and.arrow.up"))
                             .font(.system(size: 24))
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.mainDarkGray)
                     }
                 }
                 VStack {
@@ -95,7 +101,7 @@ struct ArtPieceView: View {
                         }
                     }
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(.mainDarkGray)
             }
         }
     }
